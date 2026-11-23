@@ -1,0 +1,278 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="robots" content="noindex, nofollow"><style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>松の湯</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500&display=swap">
+<style>
+/* Layout: 昭和十二年から続く町の銭湯。藍ののれんと白いタイルを地にして、縦書きで物語を語る */
+:root{
+  --bg:#f7f8f6;        /* 白タイルの目地あかり */
+  --tile:#e8ece9;
+  --ink:#1d2433;
+  --muted:#5d6577;
+  --ai:#1f3a6b;        /* 藍ののれん */
+  --ai-ink:#f4f1e8;
+  --shu:#c0392b;       /* 「ゆ」の朱 */
+  --line:#d4d9d6;
+  --mincho:"Shippori Mincho B1","Hiragino Mincho ProN","Yu Mincho",serif;
+  --body:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic","Meiryo",sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#12161f;--tile:#1a2030;--ink:#e9ecf2;--muted:#a4abba;--ai:#2c4f8f;--ai-ink:#f4f1e8;--shu:#e06a5a;--line:#2a3142;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12161f;--tile:#1a2030;--ink:#e9ecf2;--muted:#a4abba;--ai:#2c4f8f;--ai-ink:#f4f1e8;--shu:#e06a5a;--line:#2a3142;color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.9}
+.wrap{max-width:1040px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{margin:0;font-family:var(--mincho);text-wrap:balance}
+p{margin:0}
+a{color:inherit}
+a:focus-visible{outline:3px solid var(--shu);outline-offset:3px}
+
+/* のれん（ヘッダー） */
+.noren{background:var(--ai);color:var(--ai-ink)}
+.noren .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding-block:14px}
+.mark{display:flex;align-items:center;gap:12px;text-decoration:none}
+.yu{width:40px;height:40px;border-radius:50%;background:var(--ai-ink);color:var(--shu);display:grid;place-items:center;font-family:var(--mincho);font-weight:800;font-size:22px}
+.mark b{font-family:var(--mincho);font-size:22px;letter-spacing:.2em}
+.noren nav{display:flex;gap:18px;flex-wrap:wrap;font-size:14px}
+.noren nav a{text-decoration:none;opacity:.9}
+.noren nav a:hover{opacity:1;text-decoration:underline}
+/* のれんの切れ目 */
+.cuts{height:28px;background:repeating-linear-gradient(90deg,var(--ai) 0 calc(25% - 3px),transparent calc(25% - 3px) 25%)}
+
+/* ヒーロー：縦書き */
+.hero{background:
+  linear-gradient(var(--line) 1px,transparent 1px) 0 0/36px 36px,
+  linear-gradient(90deg,var(--line) 1px,transparent 1px) 0 0/36px 36px,var(--tile)}
+.hero .wrap{display:flex;flex-direction:row-reverse;justify-content:space-between;align-items:flex-start;gap:40px;padding-block:56px}
+.tate{writing-mode:vertical-rl;font-family:var(--mincho);font-weight:800;font-size:clamp(30px,5vw,52px);line-height:1.5;letter-spacing:.12em;height:15em;max-height:520px}
+.tate .shu{color:var(--shu)}
+.hero-side{display:flex;flex-direction:column;gap:20px;max-width:24em;align-self:flex-end;min-width:0}
+.since{font-family:var(--mincho);font-size:15px;color:var(--muted);letter-spacing:.3em}
+.today{background:var(--bg);border:1px solid var(--line);padding:16px 20px;display:grid;grid-template-columns:auto 1fr;gap:4px 16px;font-size:15px;font-variant-numeric:tabular-nums}
+.today dt{color:var(--muted)}
+.today dd{margin:0;font-weight:500}
+
+/* 区切り */
+.band{padding-block:72px}
+.band + .band{border-top:1px solid var(--line)}
+.head{display:flex;align-items:baseline;gap:16px;margin-bottom:32px;flex-wrap:wrap}
+.head h2{font-size:clamp(26px,4vw,34px);font-weight:700}
+.head span{color:var(--muted);font-size:13px;letter-spacing:.2em}
+
+/* 物語 */
+.story{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+.era{display:flex;flex-direction:column;gap:8px;min-width:0;border-top:2px solid var(--ai);padding-top:16px}
+.era .y{font-family:var(--mincho);font-weight:800;font-size:28px;font-variant-numeric:tabular-nums}
+.era .y small{font-size:14px;color:var(--muted);margin-left:8px;font-weight:500}
+.era p{color:var(--muted);font-size:15px}
+
+/* 湯船 */
+.baths{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.photos{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px}
+.photos figure{margin:0;display:flex;flex-direction:column;gap:8px;min-width:0}
+.photos img{width:100%;max-width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:4px;display:block}
+.photos figcaption{color:var(--muted);font-size:14px}
+.bath{background:var(--tile);border-radius:4px;padding:24px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.bath .t{font-family:var(--mincho);font-weight:800;font-size:40px;line-height:1;font-variant-numeric:tabular-nums}
+.bath.hot .t{color:var(--shu)}
+.bath.mild .t{color:var(--ai)}
+.bath h3{font-size:20px}
+.bath p{color:var(--muted);font-size:15px}
+.fuji{margin-top:16px;border-radius:4px;overflow:hidden;aspect-ratio:16/5;max-width:100%;background:linear-gradient(#8fb6d9,#cfe0ee 70%)}
+.fuji svg{width:100%;height:100%;display:block}
+.cap{margin-top:8px;color:var(--muted);font-size:14px}
+
+/* 料金・時間 */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+.two > div{min-width:0}
+table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+th,td{padding:12px 4px;border-bottom:1px solid var(--line);text-align:left;font-weight:400}
+td{text-align:right;font-family:var(--mincho);font-weight:700;font-size:19px}
+.small{margin-top:12px;color:var(--muted);font-size:14px}
+
+/* 声 */
+.voices{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+blockquote{margin:0;display:flex;flex-direction:column;gap:12px;min-width:0}
+blockquote p{font-family:var(--mincho);font-size:17px;line-height:1.9}
+blockquote footer{color:var(--muted);font-size:13px}
+
+/* アクセス */
+.access{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.access > *{min-width:0}
+dl.info{margin:0;display:grid;grid-template-columns:5em 1fr;gap:10px 16px}
+dl.info dt{color:var(--muted);font-size:14px}
+dl.info dd{margin:0}
+
+/* グッズ */
+.goods{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.good{display:flex;flex-direction:column;gap:12px;min-width:0}
+.g-pic{aspect-ratio:4/3;max-width:100%;border-radius:4px;display:grid;place-items:center;font-family:var(--mincho);font-weight:800;font-size:44px}
+.g-tenugui{background:linear-gradient(to top,#2f6f8a 0 14%,transparent 14%),conic-gradient(from 150deg at 50% 22%,#3d5f8f 0 60deg,transparent 60deg),#cfe0ee}
+.g-noren{background:repeating-linear-gradient(90deg,var(--ai) 0 calc(33.3% - 3px),var(--bg) calc(33.3% - 3px) 33.3%);color:var(--ai-ink)}
+.g-oke{background:radial-gradient(ellipse 42% 30% at 50% 55%,#f2c230 0 98%,transparent 100%),var(--tile);color:#7a5a10}
+.g-body{display:flex;flex-direction:column;gap:4px}
+.g-body h3{font-size:18px}
+.g-body p{color:var(--muted);font-size:14px}
+.g-body .g-price{color:var(--ink);font-family:var(--mincho);font-weight:700;font-size:18px;font-variant-numeric:tabular-nums}
+
+.foot{background:var(--ai);color:var(--ai-ink);padding-block:28px;font-size:13px}
+.foot .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+@media (max-width:760px){
+  .hero .wrap{flex-direction:column;align-items:center}
+  .tate{height:auto;max-height:none;writing-mode:horizontal-tb;font-size:30px;letter-spacing:.06em}
+  .hero-side{align-self:stretch}
+  .story,.baths,.voices,.two,.access,.goods,.photos{grid-template-columns:1fr}
+}
+</style>
+
+<header>
+  <div class="noren">
+    <div class="wrap">
+      <a class="mark" href="#top"><span class="yu">ゆ</span><b>松の湯</b></a>
+      <nav aria-label="ページ内の案内">
+        <a href="#story">松の湯のあゆみ</a>
+        <a href="#baths">お風呂</a>
+        <a href="#price">料金・時間</a>
+        <a href="#goods">グッズ</a>
+        <a href="#access">アクセス</a>
+      </nav>
+    </div>
+  </div>
+  <div class="cuts" aria-hidden="true"></div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <h1 class="tate">今日も、<br><span class="shu">四十四度</span>で<br>お待ちしています。</h1>
+      <div class="hero-side">
+        <p class="since">昭和十二年創業</p>
+        <p>親子三代で守ってきた、町の銭湯です。薪で沸かす熱いお湯と、壁いっぱいの富士山。仕事帰りの方も、子ども連れの方も、どうぞ気軽に。</p>
+        <dl class="today">
+          <dt>営業</dt><dd>15:00〜23:00</dd>
+          <dt>定休日</dt><dd>毎週月曜日</dd>
+          <dt>大人</dt><dd>520円</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section id="story" class="band">
+    <div class="wrap">
+      <div class="head"><h2>松の湯のあゆみ</h2><span>OUR STORY</span></div>
+      <div class="story">
+        <div class="era"><p class="y">1937<small>昭和12年</small></p><p>初代が、町の人のために開いたのがはじまり。当時は井戸水を薪で沸かし、近所の家族が毎晩集まりました。</p></div>
+        <div class="era"><p class="y">1978<small>昭和53年</small></p><p>二代目が建て直し、浴室の壁に富士山のペンキ絵を描いてもらいました。今も同じ絵が残っています。</p></div>
+        <div class="era"><p class="y">2026<small>令和8年</small></p><p>三代目が、建物はそのままに、サウナと水風呂を新しくしました。昔からのお客さんも、若いお客さんも来てくれます。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="baths" class="band">
+    <div class="wrap">
+      <div class="head"><h2>お風呂</h2><span>BATHS</span></div>
+      <div class="photos">
+        <figure><img src="images/matsu-tub.jpg" alt="檜の丸い湯船" loading="lazy"><figcaption>檜の湯船は、令和の改装で入れた水風呂です。</figcaption></figure>
+        <figure><img src="images/matsu-bucket.jpg" alt="サウナ室の木のバケツと柄杓" loading="lazy"><figcaption>サウナ室では、自分でロウリュ（石に水をかける）ができます。</figcaption></figure>
+      </div>
+      <div class="baths">
+        <div class="bath hot"><span class="t">44℃</span><h3>あつ湯</h3><p>松の湯の名物。薪で沸かした、肌がきゅっとする熱さです。</p></div>
+        <div class="bath mild"><span class="t">40℃</span><h3>ぬる湯</h3><p>ゆっくり長くつかりたい方に。小さなお子さんもこちらへ。</p></div>
+        <div class="bath"><span class="t">日替</span><h3>薬湯</h3><p>ゆず・よもぎ・しょうぶなど、季節ごとに変わるお湯です。</p></div>
+      </div>
+      <div class="fuji" role="img" aria-label="浴室の壁の富士山のペンキ絵">
+        <svg viewBox="0 0 800 250" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="250,250 400,40 550,250" fill="#3d5f8f"/>
+          <polygon points="355,104 400,40 445,104 425,96 410,110 392,96 375,108" fill="#ffffff"/>
+          <polygon points="0,250 120,150 260,250" fill="#5b7f6a"/>
+          <polygon points="520,250 680,140 800,210 800,250" fill="#5b7f6a"/>
+          <rect x="0" y="225" width="800" height="25" fill="#2f6f8a"/>
+        </svg>
+      </div>
+      <p class="cap">浴室の壁の富士山は、昭和53年に描かれたもの。湯船につかると、ちょうど目の高さに見えます。</p>
+    </div>
+  </section>
+
+  <section id="price" class="band">
+    <div class="wrap two">
+      <div>
+        <div class="head"><h2>料金</h2><span>PRICE</span></div>
+        <table>
+          <tr><th scope="row">大人（中学生以上）</th><td>520円</td></tr>
+          <tr><th scope="row">小学生</th><td>200円</td></tr>
+          <tr><th scope="row">未就学児</th><td>100円</td></tr>
+          <tr><th scope="row">サウナ（追加）</th><td>300円</td></tr>
+        </table>
+        <p class="small">タオル・石けんの貸し出しもあります（各50円）。</p>
+      </div>
+      <div>
+        <div class="head"><h2>営業時間</h2><span>HOURS</span></div>
+        <table>
+          <tr><th scope="row">火〜土</th><td>15:00〜23:00</td></tr>
+          <tr><th scope="row">日・祝</th><td>12:00〜22:00</td></tr>
+          <tr><th scope="row">定休日</th><td>毎週月曜日</td></tr>
+        </table>
+        <p class="small">月曜が祝日の時は営業し、翌日がお休みです。</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="goods" class="band">
+    <div class="wrap">
+      <div class="head"><h2>松の湯のグッズ</h2><span>GOODS</span></div>
+      <div class="goods">
+        <article class="good">
+          <div class="g-pic g-tenugui" aria-hidden="true"></div>
+          <div class="g-body"><h3>富士山の手ぬぐい</h3><p>浴室のペンキ絵を、そのまま手ぬぐいに。</p><p class="g-price">1,200円</p></div>
+        </article>
+        <article class="good">
+          <div class="g-pic g-noren" aria-hidden="true"><span>ゆ</span></div>
+          <div class="g-body"><h3>のれん柄トートバッグ</h3><p>藍色ののれんの柄。お風呂セットがちょうど入ります。</p><p class="g-price">2,500円</p></div>
+        </article>
+        <article class="good">
+          <div class="g-pic g-oke" aria-hidden="true"><span>松</span></div>
+          <div class="g-body"><h3>ミニ湯おけ</h3><p>昔ながらの黄色い湯おけの、小物入れサイズ。</p><p class="g-price">800円</p></div>
+        </article>
+      </div>
+      <p class="small">番台で販売しています。遠くの方はオンラインショップからどうぞ（見本です。本物のサイトでは BASE や STORES などにつなぎます）。</p>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap">
+      <div class="head"><h2>町の人の声</h2><span>VOICES</span></div>
+      <div class="voices">
+        <blockquote><p>子どもの頃から通っています。あつ湯に入ると、一日の疲れが抜けます。</p><footer>近所に住む 70代の方</footer></blockquote>
+        <blockquote><p>サウナができてから、仕事帰りに寄るのが楽しみになりました。</p><footer>駅前で働く 30代の方</footer></blockquote>
+        <blockquote><p>子どもと一緒に、富士山を見ながらぬる湯に入るのが週末の習慣です。</p><footer>小学生のお母さん</footer></blockquote>
+      </div>
+    </div>
+  </section>
+
+  <section id="access" class="band">
+    <div class="wrap">
+      <div class="head"><h2>アクセス</h2><span>ACCESS</span></div>
+      <div class="access">
+        <dl class="info">
+          <dt>住所</dt><dd>〒000-0000<br>○○県○○市 松町4-5-6</dd>
+          <dt>電車</dt><dd>○○駅 西口から歩いて7分</dd>
+          <dt>自転車</dt><dd>店の前に停められます</dd>
+          <dt>電話</dt><dd>000-0000-0000</dd>
+        </dl>
+        <p>西口を出て、商店街をまっすぐ。八百屋さんの角を右に曲がると、藍色ののれんが見えます。</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="foot">
+  <div class="wrap">
+    <span>© 松の湯</span>
+    <span>※ ホームページ制作の見本として作った、架空のお店です。お客さんの声も見本です。</span>
+  </div>
+</div>

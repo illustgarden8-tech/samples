@@ -1,0 +1,265 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="robots" content="noindex, nofollow"><style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>定食まるや</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@500&family=M+PLUS+Rounded+1c:wght@400;700;800&display=swap">
+<style>
+/* Layout: 町の定食屋。店先の黒板（今日の日替わり）を主役に、明るい卵色と青菜の緑で、気取らない昼ごはんの空気 */
+:root{
+  --bg:#fffaf0;        /* ごはんの白 */
+  --card:#ffffff;
+  --ink:#2b2a26;
+  --muted:#6b675c;
+  --yolk:#f2b632;      /* 卵焼き */
+  --green:#3f7d4e;     /* 青菜 */
+  --board:#2f5c44;     /* 黒板（明るめの緑） */
+  --sun:#fff0c2;       /* 店先のひだまり */
+  --leaf:#eef7e8;
+  --chalk:#f4f1e6;
+  --line:#ece3cf;
+  --round:"M PLUS Rounded 1c","Hiragino Maru Gothic ProN","Yu Gothic",sans-serif;
+  --hand:"Kiwi Maru","M PLUS Rounded 1c","Hiragino Maru Gothic ProN",sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#1c1b17;--card:#262520;--ink:#f1ece0;--muted:#b6af9f;--yolk:#f2be4a;--green:#7cbf8c;--board:#244a36;--sun:#2c2719;--leaf:#1f2a20;--chalk:#f4f1e6;--line:#38352c;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#1c1b17;--card:#262520;--ink:#f1ece0;--muted:#b6af9f;--yolk:#f2be4a;--green:#7cbf8c;--board:#244a36;--sun:#2c2719;--leaf:#1f2a20;--chalk:#f4f1e6;--line:#38352c;color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--round);font-size:16px;line-height:1.8}
+.wrap{max-width:1000px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{margin:0;text-wrap:balance}
+p{margin:0}
+a{color:inherit}
+a:focus-visible{outline:3px solid var(--green);outline-offset:3px}
+
+.top .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding-block:18px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:800;font-size:22px}
+.logo i{width:36px;height:36px;border-radius:50%;background:var(--yolk);display:grid;place-items:center;font-style:normal;font-size:18px;color:#2b2a26}
+nav{display:flex;gap:18px;flex-wrap:wrap;font-size:14px;font-weight:700}
+nav a{text-decoration:none}
+nav a:hover{color:var(--green)}
+
+/* ヒーロー＋黒板 */
+.top{background:var(--sun)}
+.hero{background:var(--sun)}
+.chip{background:var(--card)}
+.band.tint{background:var(--leaf)}
+.band.tint .day{background:var(--card)}
+.hero .wrap{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;padding-block:32px 64px}
+.hero-text{display:flex;flex-direction:column;gap:18px;min-width:0}
+.hero h1{font-weight:800;font-size:clamp(30px,5vw,48px);line-height:1.35}
+.hero h1 em{font-style:normal;background:linear-gradient(transparent 60%,var(--yolk) 60%)}
+.hero-text p{color:var(--muted)}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{border:2px solid var(--ink);border-radius:999px;padding:4px 14px;font-size:14px;font-weight:700}
+
+.board{background:var(--board);color:var(--chalk);border-radius:10px;padding:28px;border:10px solid #8a6a43;font-family:var(--hand);display:flex;flex-direction:column;gap:12px;min-width:0;box-shadow:0 8px 0 rgba(0,0,0,.08)}
+.board .date{font-size:15px;opacity:.85}
+.board h2{font-family:var(--hand);font-weight:500;font-size:16px;letter-spacing:.1em;color:var(--yolk)}
+.board .dish{font-size:clamp(24px,3.4vw,32px);line-height:1.4}
+.board .side{font-size:15px;opacity:.9}
+.board .price{font-size:30px;align-self:flex-end}
+.board .price small{font-size:15px}
+.board .soldout{font-size:13px;opacity:.75}
+
+/* 区切り */
+.band{padding-block:64px;border-top:2px dashed var(--line)}
+.head{margin-bottom:28px;display:flex;flex-direction:column;gap:4px}
+.head h2{font-weight:800;font-size:clamp(24px,3.6vw,32px)}
+.head p{color:var(--muted)}
+
+/* 写真 */
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.gallery figure{margin:0;display:flex;flex-direction:column;gap:8px;min-width:0}
+.gallery img{width:100%;max-width:100%;aspect-ratio:1;object-fit:cover;border-radius:12px;display:block}
+.gallery figcaption{font-size:14px;font-weight:700}
+.counter{width:100%;max-width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:12px;display:block}
+@media (max-width:720px){.gallery{grid-template-columns:1fr}}
+
+/* 今週の日替わり */
+.week{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+.day{background:var(--card);border:2px solid var(--line);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.day b{font-size:13px;color:var(--muted)}
+.day span{font-weight:700;font-size:15px;line-height:1.5}
+.day.is-today{border-color:var(--green)}
+.day.is-today b{color:var(--green)}
+
+/* 定番 */
+.menu{display:grid;grid-template-columns:1fr 1fr;gap:0 48px}
+.item{display:flex;align-items:baseline;gap:8px;padding-block:14px;border-bottom:1px solid var(--line);min-width:0}
+.item .n{font-weight:700}
+.item .dots{flex:1;border-bottom:2px dotted var(--line);transform:translateY(-4px)}
+.item .p{font-weight:800;font-variant-numeric:tabular-nums}
+.note{margin-top:16px;color:var(--muted);font-size:14px}
+
+/* インスタ */
+.insta{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.post{aspect-ratio:1;max-width:100%;border-radius:10px;display:flex;align-items:flex-end;padding:10px;font-size:13px;font-weight:700;color:#fff}
+.post:nth-child(1){background:linear-gradient(150deg,#e9a23b,#b8621f)}
+.post:nth-child(2){background:linear-gradient(150deg,#7fae6a,#3f7d4e)}
+.post:nth-child(3){background:linear-gradient(150deg,#d9784f,#9d3f26)}
+.post:nth-child(4){background:linear-gradient(150deg,#c7a76b,#7d6334)}
+.insta-note{margin-top:14px;font-size:14px;color:var(--muted)}
+
+/* 店のこと・アクセス */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+.two > div{min-width:0;display:flex;flex-direction:column;gap:14px}
+dl.info{margin:0;display:grid;grid-template-columns:5.5em 1fr;gap:10px 16px}
+dl.info dt{color:var(--muted);font-size:14px}
+dl.info dd{margin:0;font-weight:700}
+.closed{color:#c0392b}
+
+footer{padding-block:28px;border-top:2px dashed var(--line);color:var(--muted);font-size:13px}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+@media (max-width:820px){.week{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:720px){
+  .hero .wrap,.two,.menu{grid-template-columns:1fr}
+  .insta{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:420px){.week{grid-template-columns:repeat(2,1fr)}}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#top"><i>ま</i>定食まるや</a>
+    <nav aria-label="ページ内の案内">
+      <a href="#today">今日の日替わり</a>
+      <a href="#menu">メニュー</a>
+      <a href="#insta">お知らせ</a>
+      <a href="#access">営業時間・場所</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero" id="today">
+    <div class="wrap">
+      <div class="hero-text">
+        <h1>おかあさんの味を、<br><em>毎日ちがう</em>おかずで。</h1>
+        <p>駅前の商店街で40年。ごはんとお味噌汁はおかわり自由です。お昼休みに、さっと食べて元気になってください。</p>
+        <div class="chips"><span class="chip">ごはんおかわり自由</span><span class="chip">テイクアウトOK</span><span class="chip">子ども用いす</span></div>
+      </div>
+      <div class="board" aria-live="polite">
+        <p class="date" id="b-date">今日の日替わり</p>
+        <h2>本日の日替わり定食</h2>
+        <p class="dish" id="b-dish">鶏の唐揚げ 甘酢あんかけ</p>
+        <p class="side" id="b-side">小鉢（ひじき煮）・お味噌汁・お漬物・ごはん</p>
+        <p class="price">850<small>円</small></p>
+        <p class="soldout">※ なくなり次第おわります（1日30食）</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap">
+      <div class="gallery">
+        <figure><img src="images/maruya-teishoku.jpg" alt="ごはん・お味噌汁・小鉢がお盆にのった定食" loading="lazy"><figcaption>小鉢がたくさんつく、まるやの定食</figcaption></figure>
+        <figure><img src="images/maruya-karaage.jpg" alt="キャベツを添えた唐揚げ" loading="lazy"><figcaption>人気の唐揚げは、木曜日の日替わりで</figcaption></figure>
+        <figure><img src="images/maruya-miso.jpg" alt="豆腐とさやえんどうのお味噌汁とごはん" loading="lazy"><figcaption>お味噌汁は毎朝だしからとっています</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="band tint">
+    <div class="wrap">
+      <div class="head"><h2>今週の日替わり</h2><p>月曜から土曜まで、毎日おかずが変わります。どれも850円です。</p></div>
+      <div class="week" id="week"></div>
+    </div>
+  </section>
+
+  <section class="band" id="menu">
+    <div class="wrap">
+      <div class="head"><h2>いつものメニュー</h2><p>日替わりのほかに、いつでも食べられる定食です。</p></div>
+      <div class="menu">
+        <div class="item"><span class="n">しょうが焼き定食</span><span class="dots"></span><span class="p">900円</span></div>
+        <div class="item"><span class="n">さばの味噌煮定食</span><span class="dots"></span><span class="p">950円</span></div>
+        <div class="item"><span class="n">だし巻き卵定食</span><span class="dots"></span><span class="p">800円</span></div>
+        <div class="item"><span class="n">ミックスフライ定食</span><span class="dots"></span><span class="p">1,000円</span></div>
+        <div class="item"><span class="n">とん汁（大）に変更</span><span class="dots"></span><span class="p">+150円</span></div>
+        <div class="item"><span class="n">ごはん大盛り</span><span class="dots"></span><span class="p">無料</span></div>
+      </div>
+      <p class="note">すべての定食に、ごはん・お味噌汁・お漬物がつきます。</p>
+    </div>
+  </section>
+
+  <section class="band tint" id="insta">
+    <div class="wrap">
+      <div class="head"><h2>まるやのインスタ</h2><p>今日のおかずや、臨時のお休みはインスタでお知らせしています。</p></div>
+      <div class="insta">
+        <div class="post">本日の唐揚げ</div>
+        <div class="post">ほうれん草のおひたし</div>
+        <div class="post">さばの味噌煮</div>
+        <div class="post">年末年始のお休み</div>
+      </div>
+      <p class="insta-note">※ 見本です。本物のサイトでは、お店がインスタに投稿すると、ここに自動で並ぶようにできます。</p>
+    </div>
+  </section>
+
+  <section class="band" id="access">
+    <div class="wrap two">
+      <div>
+        <div class="head"><h2>営業時間</h2></div>
+        <dl class="info">
+          <dt>お昼</dt><dd>11:00〜14:00</dd>
+          <dt>夜</dt><dd>17:30〜21:00</dd>
+          <dt>お休み</dt><dd class="closed">日曜日・祝日</dd>
+        </dl>
+        <p class="note">夜は日替わりがなくなっていることがあります。</p>
+      </div>
+      <div>
+        <div class="head"><h2>お店の場所</h2></div>
+        <dl class="info">
+          <dt>住所</dt><dd>○○県○○市 駅前商店街 2-8</dd>
+          <dt>電車</dt><dd>○○駅 南口から歩いて2分</dd>
+          <dt>席</dt><dd>カウンター6席・テーブル12席</dd>
+          <dt>電話</dt><dd>000-0000-0000</dd>
+        </dl>
+        <img class="counter" src="images/maruya-counter.jpg" alt="卵や器が並ぶ木のカウンター" loading="lazy">
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 定食まるや</span>
+    <span>※ ホームページ制作の見本として作った、架空のお店です。</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var menu = [
+    {d:"月", dish:"ハンバーグ 和風おろしソース", side:"小鉢（切り干し大根）"},
+    {d:"火", dish:"さばの塩焼き", side:"小鉢（ほうれん草のおひたし）"},
+    {d:"水", dish:"豚の角煮", side:"小鉢（ポテトサラダ）"},
+    {d:"木", dish:"鶏の唐揚げ 甘酢あんかけ", side:"小鉢（ひじき煮）"},
+    {d:"金", dish:"アジフライ", side:"小鉢（きんぴらごぼう）"},
+    {d:"土", dish:"肉じゃが", side:"小鉢（冷ややっこ）"}
+  ];
+  var now = new Date();
+  var wd = now.getDay(); // 0=日
+  var idx = wd === 0 ? -1 : wd - 1;
+  var week = document.getElementById("week");
+  menu.forEach(function(m, i){
+    var el = document.createElement("div");
+    el.className = "day" + (i === idx ? " is-today" : "");
+    el.innerHTML = "<b>" + m.d + "曜日" + (i === idx ? "（今日）" : "") + "</b><span></span>";
+    el.querySelector("span").textContent = m.dish;
+    week.appendChild(el);
+  });
+  var dateEl = document.getElementById("b-date");
+  var label = (now.getMonth()+1) + "月" + now.getDate() + "日（" + "日月火水木金土"[wd] + "）";
+  if (idx === -1){
+    dateEl.textContent = label + "　今日はお休みです。明日の日替わり";
+    idx = 0;
+  } else {
+    dateEl.textContent = label;
+  }
+  document.getElementById("b-dish").textContent = menu[idx].dish;
+  document.getElementById("b-side").textContent = menu[idx].side + "・お味噌汁・お漬物・ごはん";
+})();
+</script>

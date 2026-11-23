@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>ホームページ制作の見本</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;700&display=swap">
+<style>
+:root{--bg:#f7f5f1;--ink:#24211d;--muted:#6c665d;--line:#e2dcd2;--card:#fff}
+@media (prefers-color-scheme: dark){:root{--bg:#1b1916;--ink:#eee8de;--muted:#b0a79a;--line:#36312b;--card:#24211d}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",sans-serif;line-height:1.8}
+main{max-width:880px;margin:0 auto;padding:56px max(16px,env(safe-area-inset-left,0px)) 64px}
+h1{font-size:clamp(26px,4vw,34px);margin:0 0 8px}
+.lead{color:var(--muted);margin:0 0 32px}
+.list{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+a.card{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden;text-decoration:none;color:inherit}
+a.card:hover{border-color:var(--ink)}
+a.card img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
+.card div{padding:14px 16px 18px;display:flex;flex-direction:column;gap:4px}
+.card b{font-size:18px}
+.card span{color:var(--muted);font-size:14px}
+.note{margin-top:32px;color:var(--muted);font-size:13px}
+@media (max-width:720px){.list{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<main>
+  <h1>ホームページ制作の見本</h1>
+  <p class="lead">地域のお店向けに作った、1ページのホームページの見本です。スマホでも見やすく作っています。</p>
+  <div class="list">
+    <a class="card" href="totonoi.html"><img src="images/totonoi-hero.jpg" alt=""><div><b>ととのいの湯</b><span>今どきの、まちのサウナ</span></div></a>
+    <a class="card" href="matsunoyu.html"><img src="images/matsu-tub.jpg" alt=""><div><b>松の湯</b><span>昭和から続く、町の銭湯</span></div></a>
+    <a class="card" href="maruya.html"><img src="images/maruya-teishoku.jpg" alt=""><div><b>定食まるや</b><span>日替わりが自慢の定食屋</span></div></a>
+  </div>
+  <p class="note">※ どれも見本として作った架空のお店です。写真は Pexels の素材を使っています。</p>
+</main>
+</body>
+</html>

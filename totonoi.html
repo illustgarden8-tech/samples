@@ -1,0 +1,306 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="robots" content="noindex, nofollow"><style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>ととのいの湯</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
+<style>
+/* Layout: 町のサウナの一枚もの。熱い色(サウナ)と冷たい色(水風呂)を温度計のように縦に並べ、その往復を見せる */
+:root{
+  --bg:#f6f3ee;          /* 檜の白木 */
+  --surface:#ece5da;
+  --ink:#2a2420;         /* 炭 */
+  --muted:#6f655c;
+  --hot:#b8462e;         /* サウナ室の熱 */
+  --cold:#2f6f8a;        /* 井戸水 */
+  --line:#d9cfc1;
+  --on-accent:#fffaf4;
+  --display:"Dela Gothic One","Hiragino Sans","Yu Gothic",sans-serif;
+  --body:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic","Meiryo",sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#1b1815;--surface:#26211d;--ink:#efe8de;--muted:#b3a89b;--hot:#e0725a;--cold:#6fb0cc;--line:#3a332d;--on-accent:#1b1815;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#1b1815;--surface:#26211d;--ink:#efe8de;--muted:#b3a89b;--hot:#e0725a;--cold:#6fb0cc;--line:#3a332d;--on-accent:#1b1815;color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.8}
+.wrap{max-width:1080px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:inherit}
+a:focus-visible,.btn:focus-visible{outline:3px solid var(--cold);outline-offset:3px}
+h1,h2,h3{text-wrap:balance;margin:0}
+p{margin:0}
+
+/* ヘッダー */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:14px;flex-wrap:wrap}
+.logo{font-family:var(--display);font-size:22px;letter-spacing:.04em;text-decoration:none}
+.logo small{font-family:var(--body);font-size:11px;color:var(--muted);letter-spacing:.2em;margin-left:8px}
+nav ul{display:flex;gap:20px;list-style:none;margin:0;padding:0;flex-wrap:wrap}
+nav a{text-decoration:none;font-size:14px;font-weight:500}
+nav a:hover{color:var(--hot)}
+
+/* ヒーロー */
+.hero .wrap{display:grid;grid-template-columns:1.3fr .7fr;gap:48px;align-items:center;padding-block:72px 64px}
+.hero-text{display:flex;flex-direction:column;gap:24px;min-width:0}
+.eyebrow{font-size:12px;letter-spacing:.24em;color:var(--muted)}
+.hero h1{font-family:var(--display);font-weight:400;font-size:clamp(34px,6vw,64px);line-height:1.25}
+.hero h1 .hot{color:var(--hot)}
+.lead{color:var(--muted);max-width:32em}
+.btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-block;padding:12px 24px;border-radius:999px;font-weight:700;font-size:15px;text-decoration:none;border:2px solid var(--ink)}
+.btn.primary{background:var(--ink);color:var(--bg)}
+.btn.primary:hover{background:var(--hot);border-color:var(--hot);color:var(--on-accent)}
+.btn.ghost:hover{border-color:var(--cold);color:var(--cold)}
+
+/* 温度計 */
+.gauge{display:grid;grid-template-columns:28px 1fr;gap:16px;align-items:stretch;height:360px;max-width:260px;justify-self:center;width:100%}
+.tube{border-radius:999px;background:linear-gradient(to bottom,var(--hot) 0%,var(--hot) 22%,#d9a35a 45%,var(--cold) 78%,var(--cold) 100%);position:relative}
+.marks{display:flex;flex-direction:column;justify-content:space-between;font-variant-numeric:tabular-nums}
+.mark b{display:block;font-family:var(--display);font-weight:400;font-size:30px;line-height:1}
+.mark span{font-size:13px;color:var(--muted)}
+.mark.h b{color:var(--hot)} .mark.c b{color:var(--cold)}
+
+/* 区切り共通 */
+section{scroll-margin-top:80px}
+.band{padding-block:72px;border-top:1px solid var(--line)}
+.band.alt{background:var(--surface)}
+.sec-head{display:flex;flex-direction:column;gap:8px;margin-bottom:36px}
+.sec-head h2{font-family:var(--display);font-weight:400;font-size:clamp(26px,4vw,36px)}
+
+/* について */
+.about-lead{max-width:36em;margin-bottom:36px}
+.rooms{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.room{background:var(--bg);border:1px solid var(--line);border-radius:6px;overflow:hidden;display:flex;flex-direction:column;min-width:0}
+.alt .room{background:var(--bg)}
+.pic{aspect-ratio:4/3;max-width:100%;display:flex;align-items:flex-end;padding:16px;color:var(--on-accent)}
+.pic b{font-family:var(--display);font-weight:400;font-size:40px;line-height:1}
+.pic.sauna{background:repeating-linear-gradient(90deg,rgba(0,0,0,.08) 0 2px,transparent 2px 28px),linear-gradient(160deg,#c9653f,#8f3420)}
+.pic.water{background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.25),transparent 40%),linear-gradient(160deg,#4a8fab,#1f4d61)}
+.pic.air{background:linear-gradient(180deg,#9fb8a6 0%,#6e8f78 60%,#4f6b57 100%)}
+.pic.photo{background-size:cover;background-position:center;color:#fffaf4}
+.room-body{padding:18px 20px 22px;display:flex;flex-direction:column;gap:6px}
+.room-body h3{font-size:18px}
+.room-body p{color:var(--muted);font-size:15px}
+
+/* 入り方 */
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:20px;counter-reset:s}
+.steps li{border-top:4px solid var(--line);padding-top:16px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.steps li:nth-child(1){border-color:var(--hot)}
+.steps li:nth-child(2){border-color:var(--cold)}
+.steps li:nth-child(3){border-color:#7f9c86}
+.steps .t{font-family:var(--display);font-weight:400;font-size:28px;font-variant-numeric:tabular-nums}
+.steps .n{font-size:12px;letter-spacing:.2em;color:var(--muted)}
+.note{margin-top:24px;color:var(--muted);font-size:14px}
+
+/* 料金・営業時間 */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+.two > div{min-width:0}
+table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:14px 4px;border-bottom:1px solid var(--line)}
+td{text-align:right;font-weight:700;font-size:18px}
+.sub{margin-top:16px;color:var(--muted);font-size:14px}
+.closed{color:var(--hot);font-weight:700}
+
+/* アクセス */
+.access{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+.access > *{min-width:0}
+.access dl{margin:0;display:grid;grid-template-columns:5em 1fr;gap:12px 16px}
+.access dt{color:var(--muted);font-size:14px}
+.access dd{margin:0}
+.map{max-width:100%;aspect-ratio:4/3;border:1px solid var(--line);border-radius:6px;background:var(--surface)}
+.map svg{width:100%;height:100%;display:block}
+
+/* グッズ */
+.goods{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.good{border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--bg);display:flex;flex-direction:column;min-width:0}
+.g-pic{aspect-ratio:1;max-width:100%;display:grid;place-items:center;color:var(--on-accent);font-family:var(--display);font-size:18px;letter-spacing:.05em}
+.g-hat{background:radial-gradient(circle at 50% 70%,#e9dcc5 0 38%,transparent 39%),#b8462e}
+.g-hat span{color:#2a2420;transform:translateY(22%)}
+.g-tee{background:linear-gradient(#2a2420,#2a2420) center/52% 62% no-repeat,#ece5da}
+.g-towel{background:repeating-linear-gradient(0deg,rgba(255,255,255,.18) 0 3px,transparent 3px 9px),#2f6f8a}
+.g-ticket{background:linear-gradient(90deg,#f6f3ee 0 70%,#d9a35a 70%);color:#2a2420}
+.g-body{padding:14px 16px 18px;display:flex;flex-direction:column;gap:4px}
+.g-body h3{font-size:16px}
+.g-body p{color:var(--muted);font-size:14px}
+.g-body .g-price{color:var(--ink);font-weight:700;font-size:16px;font-variant-numeric:tabular-nums}
+.g-btns{margin-top:24px}
+@media (max-width:760px){.goods{grid-template-columns:repeat(2,1fr)}}
+
+footer{padding-block:32px;border-top:1px solid var(--line);color:var(--muted);font-size:13px}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+@media (max-width:760px){
+  .hero .wrap{grid-template-columns:1fr;padding-block:48px}
+  .gauge{height:260px}
+  .rooms,.steps{grid-template-columns:1fr}
+  .two,.access{grid-template-columns:1fr;gap:40px}
+  nav ul{gap:14px}
+}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#top">ととのいの湯<small>SAUNA</small></a>
+    <nav aria-label="ページ内の案内">
+      <ul>
+        <li><a href="#about">ととのいの湯について</a></li>
+        <li><a href="#price">料金</a></li>
+        <li><a href="#hours">営業時間</a></li>
+        <li><a href="#goods">グッズ</a></li>
+        <li><a href="#access">アクセス</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-text">
+        <p class="eyebrow">駅から歩いて5分の、まちのサウナ</p>
+        <h1>まちの小さなサウナで、<br><span class="hot">ととのう</span>時間を。</h1>
+        <p class="lead">仕事帰りに、ふらっと。熱いサウナと井戸水の水風呂、風の通る外気浴のベンチ。はじめての方には、スタッフが入り方をご案内します。</p>
+        <div class="btns">
+          <a class="btn primary" href="#hours">営業時間を見る</a>
+          <a class="btn ghost" href="#how">はじめての方へ</a>
+        </div>
+      </div>
+      <div class="gauge" aria-label="サウナ室90度、外気浴、水風呂16度">
+        <div class="tube"></div>
+        <div class="marks">
+          <div class="mark h"><b>90℃</b><span>サウナ室</span></div>
+          <div class="mark"><b>外気</b><span>外気浴のベンチ</span></div>
+          <div class="mark c"><b>16℃</b><span>水風呂</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="band alt">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">ABOUT</p>
+        <h2>ととのいの湯について</h2>
+      </div>
+      <p class="about-lead">地域のみなさんが、気軽に立ち寄れるサウナをつくりました。「サウナ・水風呂・休憩」を、自分のペースでくり返してください。</p>
+      <div class="rooms">
+        <article class="room">
+          <div class="pic photo" role="img" aria-label="木のベンチが3段あるサウナ室" style="background-image:linear-gradient(transparent 45%,rgba(0,0,0,.55)),url(images/totonoi-hero.jpg)"><b>90℃</b></div>
+          <div class="room-body"><h3>サウナ室</h3><p>檜の香りの中で、じっくり温まります。12人まで座れる2段のベンチ。</p></div>
+        </article>
+        <article class="room">
+          <div class="pic photo" role="img" aria-label="石の壁の前の水風呂" style="background-image:linear-gradient(transparent 45%,rgba(0,0,0,.55)),url(images/totonoi-water.jpg)"><b>16℃</b></div>
+          <div class="room-body"><h3>水風呂</h3><p>くみ上げた井戸水の、やわらかい冷たさ。肩までつかれる深さです。</p></div>
+        </article>
+        <article class="room">
+          <div class="pic photo" role="img" aria-label="木々に囲まれた中庭" style="background-image:linear-gradient(transparent 45%,rgba(0,0,0,.55)),url(images/totonoi-garden.jpg)"><b>外気</b></div>
+          <div class="room-body"><h3>外気浴</h3><p>屋根つきの中庭に、寝転べるベンチを8台。雨の日も使えます。</p></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="how" class="band">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">FOR BEGINNERS</p>
+        <h2>はじめての方へ：基本の入り方</h2>
+      </div>
+      <ol class="steps">
+        <li><span class="n">1　サウナ室</span><span class="t">6〜8分</span><p>汗が出てきたら、無理せず出ます。</p></li>
+        <li><span class="n">2　水風呂</span><span class="t">1分</span><p>汗を流してから、ゆっくりつかります。</p></li>
+        <li><span class="n">3　外気浴</span><span class="t">5〜10分</span><p>体をふいて、ベンチで休みます。</p></li>
+      </ol>
+      <p class="note">1〜3を、3回ほどくり返すのがおすすめです。こまめに水分をとってください。</p>
+    </div>
+  </section>
+
+  <section class="band alt">
+    <div class="wrap two">
+      <div id="price">
+        <div class="sec-head"><p class="eyebrow">PRICE</p><h2>料金</h2></div>
+        <table>
+          <tr><th scope="row">大人</th><td>900円</td></tr>
+          <tr><th scope="row">小学生</th><td>400円</td></tr>
+          <tr><th scope="row">回数券（10回）</th><td>8,000円</td></tr>
+        </table>
+        <p class="sub">タオル・館内着つき。シャンプー・ボディソープもご用意しています。</p>
+      </div>
+      <div id="hours">
+        <div class="sec-head"><p class="eyebrow">HOURS</p><h2>営業時間</h2></div>
+        <table>
+          <tr><th scope="row">平日</th><td>15:00〜24:00</td></tr>
+          <tr><th scope="row">土・日・祝</th><td>10:00〜24:00</td></tr>
+          <tr><th scope="row">定休日</th><td class="closed">毎週火曜日</td></tr>
+        </table>
+        <p class="sub">最終受付は23:00です。</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="goods" class="band">
+    <div class="wrap">
+      <div class="sec-head"><p class="eyebrow">GOODS</p><h2>オリジナルグッズ</h2></div>
+      <p class="about-lead">受付とオンラインショップで販売しています。サウナの帰りに、おみやげにどうぞ。</p>
+      <div class="goods">
+        <article class="good">
+          <div class="g-pic g-hat" aria-hidden="true"><span>ととのい</span></div>
+          <div class="g-body"><h3>サウナハット</h3><p>頭を熱から守るフェルトの帽子。</p><p class="g-price">2,800円</p></div>
+        </article>
+        <article class="good">
+          <div class="g-pic g-tee" aria-hidden="true"><span>90℃ / 16℃</span></div>
+          <div class="g-body"><h3>オリジナルTシャツ</h3><p>温度計のロゴ入り。白と炭の2色。</p><p class="g-price">3,500円</p></div>
+        </article>
+        <article class="good">
+          <div class="g-pic g-towel" aria-hidden="true"><span>ととのいの湯</span></div>
+          <div class="g-body"><h3>今治タオル</h3><p>ふかふかの、ロゴ入りフェイスタオル。</p><p class="g-price">1,500円</p></div>
+        </article>
+        <article class="good">
+          <div class="g-pic g-ticket" aria-hidden="true"><span>10回券</span></div>
+          <div class="g-body"><h3>回数券（10回）</h3><p>1回分おとく。贈り物にも。</p><p class="g-price">8,000円</p></div>
+        </article>
+      </div>
+      <div class="btns g-btns"><a class="btn primary" href="#goods">オンラインショップを見る</a></div>
+      <p class="note">※ 見本です。本物のサイトでは、BASE や STORES などのネットショップにつなぎます。</p>
+    </div>
+  </section>
+
+  <section id="access" class="band alt">
+    <div class="wrap">
+      <div class="sec-head"><p class="eyebrow">ACCESS</p><h2>アクセス</h2></div>
+      <div class="access">
+        <dl>
+          <dt>住所</dt><dd>〒000-0000<br>○○県○○市 ととのい町1-2-3</dd>
+          <dt>電車</dt><dd>○○駅 東口から歩いて5分</dd>
+          <dt>車</dt><dd>駐車場 10台（無料）</dd>
+          <dt>電話</dt><dd>000-0000-0000</dd>
+        </dl>
+        <div class="map" role="img" aria-label="○○駅東口から、商店街を通って歩いて5分の地図">
+          <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+            <rect x="0" y="0" width="400" height="300" fill="var(--surface)"/>
+            <rect x="0" y="130" width="400" height="22" fill="var(--line)"/>
+            <rect x="250" y="0" width="22" height="300" fill="var(--line)"/>
+            <rect x="20" y="60" width="110" height="50" rx="4" fill="var(--ink)"/>
+            <text x="75" y="91" text-anchor="middle" font-size="15" fill="var(--bg)" font-family="sans-serif">○○駅</text>
+            <path d="M130 100 L140 141 L261 141 L261 210" fill="none" stroke="var(--hot)" stroke-width="4" stroke-dasharray="8 6"/>
+            <text x="190" y="128" text-anchor="middle" font-size="12" fill="var(--muted)" font-family="sans-serif">商店街</text>
+            <circle cx="261" cy="225" r="16" fill="var(--hot)"/>
+            <text x="290" y="230" font-size="14" fill="var(--ink)" font-family="sans-serif">ととのいの湯</text>
+            <text x="140" y="80" font-size="12" fill="var(--muted)" font-family="sans-serif">東口</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© ととのいの湯</span>
+    <span>※ ホームページ制作の見本として作った、架空のお店です。</span>
+  </div>
+</footer>
